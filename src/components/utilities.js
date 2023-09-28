@@ -12,3 +12,29 @@ export const fetchPosts = async () => {
         console.error(err);
     }
 };
+
+export const registerUser = async ( username, password ) => {
+    try {
+        const response = await fetch(
+            `${BASE_URL}/users/register`, {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    user: {
+                        username,
+                        password
+                    }
+                })
+            }
+        );
+        const result = await response.json();
+        console.log( username );
+        console.log( password );
+        console.log(result)
+        return result
+    } catch (err) {
+        console.error(err);
+    }
+};
