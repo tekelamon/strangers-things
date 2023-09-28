@@ -6,8 +6,8 @@ export const Login = ({ setToken }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const attemptLogin = () => {
-    const response = login(username, password);
+  const attemptLogin = async() => {
+    const response = await login(username, password);
 
     if( response.success ) {
       setToken( response.data.token );

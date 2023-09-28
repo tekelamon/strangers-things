@@ -30,9 +30,6 @@ export const registerUser = async ( username, password ) => {
       }
     );
     const result = await response.json();
-    console.log( username );
-    console.log( password );
-    console.log(result);
     return result;
   } catch (err) {
     console.error(err);
@@ -54,9 +51,40 @@ export const login = async ( username, password) => {
       })
     });
     const result = await response.json();
-    console.log(result);
     return result;
   } catch (err) {
     console.error(err);
   }
+};
+
+const makeHeaders = token => {
+  return {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  };
+};
+
+export const makePost = async ( {title, description, price, location, willDeliver}, token ) => {
+  // make headers
+  const headers = makeHeaders(token);
+
+  // make post object request
+  const postData = {
+    title,
+    description,
+    price,
+    location,
+    willDeliver
+  };
+
+  const postReq = {
+    method:'POST',
+    headers: headers,
+    body: JSON.stringify( {post:postData} )
+  };
+
+  const response = await fetch(`${BASE_URL}/posts`, postReq);
+  const result = await response.json();
+  console.log( result );
+  return result;
 };
