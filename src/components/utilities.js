@@ -1,13 +1,13 @@
 // api calls done here to allow other functions to stay DRY and appear more readable
-const COHORT = `2302-ACC-PT-WEB-PT-E`;
+const COHORT = '2302-ACC-PT-WEB-PT-E';
 const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT}`;
 const POSTS = `${BASE_URL}/posts`;
 
 export const fetchPosts = async () => {
     try {
-        const response = await fetch(`${POSTS}`)
+        const response = await fetch(`${POSTS}`);
         const result = await response.json();
-        return result
+        return result;
     } catch (err) {
         console.error(err);
     }
@@ -32,8 +32,8 @@ export const registerUser = async ( username, password ) => {
         const result = await response.json();
         console.log( username );
         console.log( password );
-        console.log(result)
-        return result
+        console.log(result);
+        return result;
     } catch (err) {
         console.error(err);
     }
@@ -50,12 +50,12 @@ export const login = async ( username, password) => {
                 user: {
                     username,
                     password
-            }
+                }
             })
         });
         const result = await response.json();
         console.log(result);
-        return result
+        return result;
     } catch (err) {
         console.error(err);
     }

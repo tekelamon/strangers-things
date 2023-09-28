@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/react-in-jsx-scope */
 import { login } from '../components/utilities';
 import { useState } from 'react';
 
@@ -9,7 +11,7 @@ export const Login = ({ setToken }) => {
         const response = login(username, password);
 
         if( response.success ) {
-            setToken( response.data.token )
+            setToken( response.data.token );
         }
         if( response.error ) {
             setToken(null);
@@ -21,6 +23,6 @@ export const Login = ({ setToken }) => {
         <h1>Login</h1>
         <input type='text' value={username} onChange={e=>setUsername(e.target.value)} />
         <input type='text' value={password} onChange={e=>setPassword(e.target.value)} />
-        <button type='button' onClick={()=>{attemptLogin()}} >Login</button>
-    </div>
+        <button type='button' onClick={()=>{attemptLogin();}} >Login</button>
+    </div>;
 };

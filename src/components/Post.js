@@ -1,18 +1,20 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/react-in-jsx-scope */
 export const Post = ({ postData }) => {
     // destructure out postData
     const {
         location,
-        willDeliver,
-        messages,
-        active,
-        author:{
-            _id,
-            username,
-        },
+        // willDeliver,
+        // messages,
+        // active,
+        // author:{
+        //     _id,
+        //     username,
+        // },
         title,
         description,
         price,
-        isAuthor,
+        // isAuthor,
     } = postData;
 
     // map to card
