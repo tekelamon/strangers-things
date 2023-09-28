@@ -10,5 +10,5 @@ export const Navigation = () => {
     </nav>
 
     <Outlet />
-  </div>
+  </div>;
 };

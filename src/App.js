@@ -1,4 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { useState } from 'react';
 import './App.css';
@@ -14,35 +13,33 @@ import { Register } from './pages/Register';
 import { fetchPosts } from './components/utilities';
 
 function App() {
-    const [user, setUser] = useState(null);
+  const [token, setToken] = useState(null);
 
-    console.log( user );
-
-    const router = createBrowserRouter([
+  const router = createBrowserRouter([
+    {
+      element: <Navigation />,
+      children: [
         {
-            element: <Navigation />,
-            children: [
-                {
-                    path: '/',
-                    element: <Posts />,
-                    loader: () => { return fetchPosts(); }
-                },
-                {
-                    path: '/login',
-                    element: <Login setUser={setUser} />
-                },
-                {
-                    path: '/profile',
-                    element: <Profile />
-                },
-                {
-                    path: '/register',
-                    element: <Register setUser={setUser} />
-                }
-            ]
+          path: '/',
+          element: <Posts token={token} />,
+          loader: () => { return fetchPosts(); }
+        },
+        {
+          path: '/login',
+          element: <Login setToken={setToken} />
+        },
+        {
+          path: '/profile',
+          element: <Profile token={token} />
+        },
+        {
+          path: '/register',
+          element: <Register setToken={setToken} />
         }
-    ]);
-    return <RouterProvider router={router} />;
+      ]
+    }
+  ]);
+  return <RouterProvider router={router} />;
 }
 
 export default App;
