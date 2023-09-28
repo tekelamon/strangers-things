@@ -113,3 +113,23 @@ export const makePost = async ( {title, description, price, location, willDelive
   const result = await response.json();
   return result;
 };
+
+export const postMessage = async ( messageText, postId, token ) => {
+  try {
+    const headers = makeHeaders(token);
+    const response = await fetch(`${BASE_URL}/posts/${postId}/messages`, {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify({
+        message: {
+          content: messageText
+        }
+      })
+    });
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (err) {
+    console.error(err);
+  }
+};
