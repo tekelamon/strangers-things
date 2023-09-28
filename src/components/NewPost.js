@@ -15,8 +15,6 @@ export const NewPost = ({ token }) => {
       willDeliver: data.get('willDeliver'),
     };
 
-    console.log( token );
-    console.log( postData );
     makePost( postData, token );
   };
 

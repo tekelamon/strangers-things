@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
+import { deletePost } from './utilities';
 
-export const Post = ({ postData }) => {
+export const Post = ({ postData, token }) => {
   // destructure out postData
   const {
     location,
+    _id,
     // willDeliver,
     // messages,
     // active,
@@ -14,7 +16,7 @@ export const Post = ({ postData }) => {
     title,
     description,
     price,
-    // isAuthor,
+    isAuthor,
   } = postData;
 
   // map to card
@@ -23,5 +25,6 @@ export const Post = ({ postData }) => {
     <h3>{price}</h3>
     <p>{description}</p>
     <p>{location}</p>
+    { isAuthor && <button type='button' onClick={()=>deletePost(_id, token)} >Delete Post</button>}
   </div>;
 };

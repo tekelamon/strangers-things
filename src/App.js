@@ -10,7 +10,7 @@ import { Profile } from './pages/Profile';
 import { Register } from './pages/Register';
 
 // import required functionality
-import { fetchPosts } from './components/utilities';
+import { fetchPosts, fetchWithToken } from './components/utilities';
 
 function App() {
   const [token, setToken] = useState(null);
@@ -22,7 +22,7 @@ function App() {
         {
           path: '/',
           element: <Posts token={token} />,
-          loader: () => { return fetchPosts(); }
+          loader: () => { return token ? fetchWithToken(token) : fetchPosts(); }
         },
         {
           path: '/login',

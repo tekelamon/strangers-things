@@ -9,6 +9,6 @@ export const Posts = ({ token }) => {
 
   return <div>
     { token && <NewPost token={token} />}
-    {posts.map( (post, index) => <Post key={index} postData={post} /> )}
+    {posts.map( (post, index) => <Post key={index} postData={post} token={token} /> )}
   </div>;
 };
