@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './App.css';
 
 // import required pages
@@ -12,18 +12,31 @@ import { Register } from './pages/Register';
 import { fetchPosts } from './components/utilities';
 
 function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={ <Navigation /> } >
-          <Route index element={ <Posts /> } />
-          <Route path='/login' element={ <Login /> } />
-          <Route path='/profile' element={ <Profile /> } />
-          <Route path='/register' element={ <Register /> } />
-        </Route>
-      </Routes>
-    </BrowserRouter>
-  );
+  const router = createBrowserRouter([
+    {
+      element: <Navigation />,
+      children: [
+        {
+          path: '/',
+          element: <Posts />,
+          loader: () => { return fetchPosts() }
+        },
+        {
+          path: "/login",
+          element: <Login />
+        },
+        {
+          path: "/profile",
+          element: <Profile />
+        },
+        {
+          path: "/register",
+          element: <Register />
+        }
+      ]
+    }
+  ]);
+  return <RouterProvider router={router} />
 }
 
 export default App;
