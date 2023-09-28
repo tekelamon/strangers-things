@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { useState } from 'react';
 import './App.css';
 
 // import required pages
@@ -12,6 +13,8 @@ import { Register } from './pages/Register';
 import { fetchPosts } from './components/utilities';
 
 function App() {
+  const [user, setUser] = useState(null);
+
   const router = createBrowserRouter([
     {
       element: <Navigation />,
@@ -22,16 +25,16 @@ function App() {
           loader: () => { return fetchPosts() }
         },
         {
-          path: "/login",
-          element: <Login />
+          path: '/login',
+          element: <Login setUser={setUser} />
         },
         {
-          path: "/profile",
+          path: '/profile',
           element: <Profile />
         },
         {
-          path: "/register",
-          element: <Register />
+          path: '/register',
+          element: <Register setUser={setUser} />
         }
       ]
     }
