@@ -8,6 +8,9 @@ import { Posts } from './pages/Posts';
 import { Profile } from './pages/Profile';
 import { Register } from './pages/Register';
 
+// import required functionality
+import { fetchPosts } from './components/utilities';
+
 function App() {
   return (
     <BrowserRouter>
